@@ -533,6 +533,31 @@
       background:linear-gradient(180deg,rgba(255,253,248,.91),rgba(245,232,210,.88));
       content:"";
     }
+    /* Ornamen tambahan dibuat lebih terlihat, tetap elegan dan tidak mengganggu teks */
+    .event-section:before{
+      position:absolute;
+      z-index:0;
+      top:18px;
+      left:50%;
+      width:min(92%,760px);
+      height:calc(100% - 36px);
+      border:1px solid rgba(169,128,66,.32);
+      border-radius:46% 46% 18px 18px / 150px 150px 18px 18px;
+      box-shadow:inset 0 0 0 7px rgba(255,253,248,.18), inset 0 0 0 8px rgba(169,128,66,.12);
+      content:"";
+      transform:translateX(-50%);
+      pointer-events:none;
+    }
+    .event-content:before{
+      display:block;
+      content:"❦  ✧  ❦";
+      color:#a98248;
+      font-family:Georgia,serif;
+      font-size:28px;
+      letter-spacing:9px;
+      margin:0 auto 15px;
+      text-shadow:0 1px 0 #fff8e9;
+    }
 
     .event-content{max-width:740px;margin:auto;padding:0 22px}
 
@@ -552,23 +577,130 @@
     .event-time,.venue-address{margin:12px 0 0;color:var(--soft);line-height:1.75}
     .venue-name{margin:11px 0 0;font-family:"Playfair Display",serif;font-size:1.55rem}
 
-    .map-link{
-      display:inline-flex;
-      transition:transform .25s ease,background .25s ease,box-shadow .25s ease;
+    /* Peta responsif dengan tinggi eksplisit agar iframe tidak tampil kosong */
+    .map-embed-wrap{
+      position:relative;
+      width:100%;
+      max-width:640px;
+      height:350px;
+      margin:26px auto 0;
+      overflow:hidden;
+      border:1px solid rgba(185,153,104,.65);
+      border-radius:18px;
+      background:#eee7dc;
+      box-shadow:0 12px 30px rgba(78,56,31,.12);
     }
-    .map-link:hover{transform:translateY(-2px);background:#f4eadb;box-shadow:0 8px 20px rgba(114,88,47,.12)}
-    .map-link:active{transform:translateY(0) scale(.98)}
+    .map-embed-wrap iframe{
+      display:block;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+    @media(max-width:700px){
+      .map-embed-wrap{height:300px;border-radius:14px}
+    }
 
-    .map-link{
+    /* Ornamen champagne yang lebih jelas di sekitar judul dan detail acara */
+    .event-title{position:relative;margin-bottom:0}
+    .event-title:after{
+      display:block;
+      content:"✦  ━━━━━━━  ❦  ━━━━━━━  ✦";
+      margin:16px auto 0;
+      color:#a98248;
+      font-family:serif;
+      font-size:15px;
+      letter-spacing:2px;
+      line-height:1.6;
+      text-shadow:0 1px 0 #fff;
+    }
+    .event-flow{
+      position:relative;
+      padding:0 22px;
+      border:1px solid rgba(164,132,84,.62);
+      border-radius:22px;
+      background:linear-gradient(145deg,rgba(255,253,248,.82),rgba(247,235,215,.68));
+      box-shadow:0 14px 35px rgba(98,70,35,.10), inset 0 0 0 5px rgba(255,255,255,.32);
+      overflow:hidden;
+    }
+    .event-flow:before,.event-flow:after{
+      position:absolute;
+      color:rgba(169,130,72,.58);
+      font-family:Georgia,serif;
+      font-size:32px;
+      line-height:1;
+      pointer-events:none;
+    }
+    .event-flow:before{content:"❧";top:9px;left:10px;transform:rotate(-24deg)}
+    .event-flow:after{content:"❧";right:10px;bottom:9px;transform:rotate(156deg)}
+    .event-unit{position:relative;z-index:1}
+    .event-unit:before{
+      position:absolute;
+      top:-6px;
+      left:50%;
+      width:10px;
+      height:10px;
+      border:1px solid #b99762;
+      background:#f8f3e9;
+      content:"";
+      transform:translateX(-50%) rotate(45deg);
+    }
+    .event-unit:last-child{border-bottom:0}
+
+    /* Jam ilustratif statis: jarum dibuat diam, tidak berputar */
+    .event-time-visual{
+      display:inline-flex;
       align-items:center;
-      gap:8px;
-      min-height:46px;
-      margin-top:20px;
-      padding:0 18px;
-      border:1px solid #b99968;
+      justify-content:center;
+      gap:10px;
+      margin:15px auto 0;
+      padding:9px 17px;
+      border:1px solid rgba(185,153,104,.55);
       border-radius:999px;
-      text-decoration:none;
+      background:linear-gradient(135deg,rgba(255,253,248,.95),rgba(239,225,202,.72));
+      color:#806237;
+      box-shadow:0 5px 14px rgba(78,56,31,.08);
+      font-size:15px;
       font-weight:700;
+      letter-spacing:.035em;
+    }
+    .event-clock{
+      position:relative;
+      display:inline-block;
+      flex:0 0 29px;
+      width:29px;
+      height:29px;
+      border:2px solid #b99762;
+      border-radius:50%;
+      background:#fffdf8;
+      box-shadow:inset 0 0 0 3px rgba(185,153,98,.12);
+    }
+    .event-clock:before,.event-clock:after{
+      position:absolute;
+      left:50%;
+      bottom:50%;
+      width:2px;
+      border-radius:3px;
+      content:"";
+      transform-origin:50% 100%;
+    }
+    .event-clock:before{
+      height:8px;
+      background:#806237;
+      transform:translateX(-50%) rotate(35deg);
+    }
+    .event-clock:after{
+      height:10px;
+      width:1.5px;
+      background:#c49a52;
+      transform:translateX(-50%) rotate(145deg);
+    }
+    .event-clock-dot{
+      position:absolute;
+      top:50%;left:50%;
+      width:4px;height:4px;
+      border-radius:50%;
+      background:#806237;
+      transform:translate(-50%,-50%);
     }
 
     .gift-strip{
@@ -754,6 +886,202 @@
       .cover-stage,.reveal,.gallery-photo{transition:none}
       .reveal{opacity:1;transform:none}
     }
+  
+
+    /* Revisi Wedding Event: palet lebih tenang, teks lebih jelas, dan jam sejajar */
+    .event-section{
+      padding:76px 0;
+      background:linear-gradient(180deg,#fbf8f1 0%,#f5ecdf 100%);
+    }
+    .event-background{filter:blur(20px) saturate(.35) opacity(.12)}
+    .event-section:after{
+      background:linear-gradient(180deg,rgba(251,248,241,.94),rgba(245,236,223,.96));
+    }
+    .event-section:before{
+      width:min(90%,700px);
+      border:1px solid rgba(169,128,66,.2);
+      border-radius:42% 42% 20px 20px / 110px 110px 20px 20px;
+      box-shadow:inset 0 0 0 5px rgba(255,255,255,.22);
+    }
+    .event-content:before{
+      content:"✦  ❦  ✦";
+      margin-bottom:12px;
+      color:#b08d55;
+      font-size:21px;
+      letter-spacing:5px;
+      text-shadow:none;
+    }
+    .event-title:after{
+      content:"";
+      width:92px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,#b08d55,transparent);
+      margin:14px auto 0;
+      text-shadow:none;
+    }
+    .event-flow{
+      max-width:540px;
+      margin-top:30px;
+      padding:0 24px;
+      border:1px solid rgba(169,128,66,.28);
+      border-radius:20px;
+      background:rgba(255,253,248,.88);
+      box-shadow:0 10px 28px rgba(76,57,34,.07);
+    }
+    .event-flow:before,.event-flow:after{display:none}
+    .event-unit{
+      padding:27px 0;
+      border-bottom:1px solid rgba(169,128,66,.22);
+    }
+    .event-unit:before{
+      top:-5px;
+      width:7px;
+      height:7px;
+      border-color:#c2a36f;
+      background:#fffdf8;
+    }
+    .event-label{
+      color:#987642 !important;
+      font-size:12px !important;
+      letter-spacing:.13rem !important;
+      line-height:1.5;
+    }
+    .event-date{
+      margin:9px 0 0 !important;
+      color:#30271f !important;
+      font-family:"Playfair Display",serif !important;
+      font-size:clamp(1.2rem,3.5vw,1.55rem) !important;
+      line-height:1.35 !important;
+      letter-spacing:.01em;
+    }
+    .event-time-visual{
+      display:flex;
+      width:max-content;
+      max-width:100%;
+      min-height:44px;
+      box-sizing:border-box;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin:14px auto 0;
+      padding:7px 16px;
+      border:1px solid rgba(169,128,66,.32);
+      background:#f8f1e6;
+      box-shadow:none;
+      color:#6f542f;
+      line-height:1;
+      vertical-align:middle;
+    }
+    .event-clock{
+      display:block;
+      flex:0 0 25px;
+      width:25px;
+      height:25px;
+      box-sizing:border-box;
+      margin:0;
+      vertical-align:middle;
+    }
+    .event-clock:before{height:7px}
+    .event-clock:after{height:8px}
+    .event-time{
+      display:inline-flex;
+      align-items:center;
+      margin:0 !important;
+      padding:0;
+      color:#6f542f !important;
+      font-family:"DM Sans",sans-serif !important;
+      font-size:14px !important;
+      font-weight:700 !important;
+      line-height:1 !important;
+      white-space:nowrap;
+    }
+    .venue-name{
+      color:#30271f !important;
+      font-size:1.3rem !important;
+      line-height:1.4 !important;
+    }
+    .venue-address{
+      margin:10px auto 0 !important;
+      max-width:460px;
+      color:#62564a !important;
+      font-size:14px !important;
+      font-weight:400 !important;
+      line-height:1.75 !important;
+    }
+    @media(max-width:700px){
+      .event-section{padding:64px 0}
+      .event-flow{padding:0 17px;border-radius:17px}
+      .event-unit{padding:23px 0}
+      .event-time-visual{min-height:42px;padding:7px 14px}
+    }
+
+
+    /* Palet Wedding Event dibuat netral: ivory, putih hangat, dan greige lembut */
+    .event-section{
+      background:linear-gradient(180deg,#fbfaf7 0%,#f5f3ee 100%) !important;
+    }
+    .event-background{filter:blur(20px) saturate(.15) opacity(.06) !important}
+    .event-section:after{
+      background:linear-gradient(180deg,rgba(251,250,247,.97),rgba(245,243,238,.98)) !important;
+    }
+    .event-section:before{
+      border-color:rgba(133,126,112,.16) !important;
+      box-shadow:inset 0 0 0 5px rgba(255,255,255,.32) !important;
+    }
+    .event-content:before{color:#8e897f !important}
+    .event-title:after{
+      background:linear-gradient(90deg,transparent,#aaa49a,transparent) !important;
+    }
+    .event-flow{
+      background:rgba(255,255,255,.92) !important;
+      border-color:rgba(151,145,134,.28) !important;
+      box-shadow:0 10px 28px rgba(52,48,40,.045) !important;
+    }
+    .event-unit{border-bottom-color:rgba(151,145,134,.22) !important}
+    .event-unit:before{
+      border-color:#b4aea3 !important;
+      background:#fff !important;
+    }
+    .event-label{color:#817b71 !important}
+    .event-date,.venue-name{color:#302e2a !important}
+    .event-time-visual{
+      background:#f6f5f1 !important;
+      border-color:rgba(151,145,134,.32) !important;
+      color:#5e5a53 !important;
+    }
+    .event-clock{
+      border-color:#969087 !important;
+      background:#fff !important;
+      box-shadow:inset 0 0 0 3px rgba(151,145,134,.09) !important;
+    }
+    .event-clock:before{background:#5e5a53 !important}
+    .event-clock:after{background:#969087 !important}
+    .event-clock-dot{background:#5e5a53 !important}
+    .event-time{color:#5e5a53 !important}
+    .venue-address{color:#69655e !important}
+
+    /* Final: hapus total semburat kuning/cokelat di area Wedding Event */
+    .event-section{
+      background:#ffffff !important;
+      background-image:none !important;
+    }
+    .event-background{display:none !important; opacity:0 !important; filter:none !important}
+    .event-section:after{
+      background:transparent !important;
+      background-image:none !important;
+    }
+    .event-section:before{
+      background:transparent !important;
+      background-image:none !important;
+      border-color:rgba(120,120,120,.16) !important;
+      box-shadow:none !important;
+    }
+    .event-content:before{color:#858585 !important}
+    .event-title:after{background:#d0d0d0 !important}
+    .event-label{color:#777777 !important}
+    .event-time-visual{background:#f7f7f7 !important;border-color:#dddddd !important;color:#555555 !important}
+    .event-clock{border-color:#999999 !important}
+    .event-time{color:#555555 !important}
   </style>
 <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
@@ -763,7 +1091,7 @@
 </head>
 <body data-template-id="__page-root" style="background: rgb(248, 243, 233);">
 <audio id="bgMusic" loop="" preload="auto">
-<source src="Lagu_Pernikahan_Kita.mp3" type="audio/mpeg"/>
+<source src="Wedding.mp3" type="audio/mpeg"/>
 </audio>
 <section aria-labelledby="cover-title" class="cover-stage" id="cover-stage"><img alt="Ulfah dan Hidayat mengenakan pakaian hitam dengan kedua tangan mengarah ke kamera" class="canva-image cover-image" data-template-id="cover-image" loading="eager" src="Cover.jpeg"/>
 <div class="cover-shade"></div>
@@ -812,8 +1140,8 @@ Bapak/Ibu/Saudara/i</p>
 <div class="person-body">
 <p class="canva-text role" data-template-id="bride-role" style="color: rgb(158, 124, 72); font-weight: 700; font-style: normal; font-size: 12px;">Mempelai Wanita</p>
 <h3 class="canva-text person-name" data-template-id="bride-name" style="color: rgb(33, 27, 22); font-weight: 500; font-style: normal; font-size: 19px;">Siti Ulfah Holipah</h3>
-<p class="canva-text detail" data-template-id="bride-family" style="color: rgb(118, 109, 101); font-weight: 400; font-style: normal; font-size: 16px;">Putri kedua dari Bpk. Epon (alm.), Ibu Nonok &amp; Bapa Yahya</p>
-<p class="detail instagram-link"><i aria-hidden="true" data-lucide="instagram"></i> <a href="https://www.instagram.com/username_mempelai_wanita/" rel="noopener noreferrer" target="_blank">@username_mempelai_wanita</a></p>
+<p class="canva-text detail" data-template-id="bride-family" style="color: rgb(118, 109, 101); font-weight: 400; font-style: normal; font-size: 16px;">Putri kedua dari Bpk. Epon (alm.), Ibu Nonok &amp; Bapa Yaya Rifay</p>
+<p class="detail instagram-link"><i aria-hidden="true" data-lucide="instagram"></i> <a href="https://www.instagram.com/iniulfaaaaa.h/" rel="noopener noreferrer" target="_blank">@iniulfaaaaa.h</a></p>
 </div>
 </article>
 <article class="canva-card person" data-template-id="groom-card" style="background: rgb(255, 253, 248);">
@@ -824,7 +1152,7 @@ Bapak/Ibu/Saudara/i</p>
 <p class="canva-text role" data-template-id="groom-role" style="color: rgb(158, 124, 72); font-weight: 700; font-style: normal; font-size: 12px;">Mempelai Pria</p>
 <h3 class="canva-text person-name" data-template-id="groom-name" style="color: rgb(33, 27, 22); font-weight: 500; font-style: normal; font-size: 19px;">Hidayat Andriansyah</h3>
 <p class="canva-text detail" data-template-id="groom-family" style="color: rgb(118, 109, 101); font-weight: 400; font-style: normal; font-size: 16px;">Putra ketiga dari Ibu Embang &amp; Bapa Suherman</p>
-<p class="detail instagram-link"><i aria-hidden="true" data-lucide="instagram"></i> <a href="https://www.instagram.com/username_mempelai_pria/" rel="noopener noreferrer" target="_blank">@username_mempelai_pria</a></p>
+<p class="detail instagram-link"><i aria-hidden="true" data-lucide="instagram"></i> <a href="https://www.instagram.com/ahday_09/" rel="noopener noreferrer" target="_blank">@ahday_09</a></p>
 </div>
 </article>
 </div>
@@ -844,18 +1172,26 @@ Bapak/Ibu/Saudara/i</p>
 <article class="event-unit">
 <p class="canva-text event-label" data-template-id="akad-label" style="color: rgb(158, 124, 72); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.15rem;">Akad Pernikahan</p>
 <p class="canva-text event-date" data-template-id="akad-date" style="color: rgb(33, 27, 22); font-weight: 500; font-style: normal; font-size: 16px;">25 November 2026</p>
-<p class="canva-text event-time" data-template-id="akad-time" style="color: rgb(118, 109, 101); font-weight: 400; font-style: normal; font-size: 16px;">Waktu acara akan mengikuti informasi undangan yang tersedia.</p>
+<div class="event-time-visual" aria-label="Waktu akad pukul 09.00 WIB"><span class="event-clock" aria-hidden="true"><span class="event-clock-dot"></span></span><span class="canva-text event-time" data-template-id="akad-time">09.00 WIB</span></div>
 </article>
 <article class="event-unit">
 <p class="canva-text event-label" data-template-id="reception-label" style="color: rgb(158, 124, 72); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.15rem;">Resepsi</p>
 <p class="canva-text event-date" data-template-id="reception-date" style="color: rgb(33, 27, 22); font-weight: 500; font-style: normal; font-size: 16px;">25 November 2026</p>
-<p class="canva-text event-time" data-template-id="reception-time" style="color: rgb(118, 109, 101); font-weight: 400; font-style: normal; font-size: 16px;">Waktu acara akan mengikuti informasi undangan yang tersedia.</p>
+<div class="event-time-visual" aria-label="Waktu resepsi pukul 10.00 WIB"><span class="event-clock" aria-hidden="true"><span class="event-clock-dot"></span></span><span class="canva-text event-time" data-template-id="reception-time">10.00 WIB</span></div>
 </article>
 <article class="event-unit">
 <p class="canva-text event-label" data-template-id="address-label" style="color: rgb(158, 124, 72); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.15rem;">Venue Pernikahan</p>
 <p class="canva-text venue-name" data-template-id="venue-name" style="color: rgb(33, 27, 22); font-weight: 500; font-style: normal; font-size: 16px;">Lokasi Acara</p>
-<p class="canva-text venue-address" data-template-id="address-value" style="color: rgb(33, 27, 22); font-weight: 600; font-style: normal; font-size: 16px;">Dsn. Lengkongsari RT 34/RW 12, Desa Sindanglaya, Kecamatan Sukamantri, Kabupaten Ciamis</p><a class="canva-link map-link" data-template-id="maps-link" href="https://maps.google.com/?q=Dsn.+Lengkongsari+RT+34+RW+12+Sindanglaya+Sukamantri+Ciamis" rel="noopener noreferrer" style="background: rgb(255, 253, 248); color: rgb(114, 88, 47);" target="_blank"> <i data-lucide="map-pin" width="16"></i> <span class="canva-text" data-template-id="maps-link-text" style="color: rgb(114, 88, 47); font-weight: 700; font-style: normal; font-size: 16px;">Buka di Google Maps</span> </a>
-<p class="canva-text section-copy" data-template-id="maps-note" style="color: rgb(138, 124, 110); font-weight: 400; font-style: normal; font-size: 12px;">Tautan Google Maps tersedia untuk membantu perjalanan Anda.</p>
+<p class="canva-text venue-address" data-template-id="address-value" style="color: rgb(33, 27, 22); font-weight: 600; font-style: normal; font-size: 16px;">Dsn. Lengkongsari RT 34/RW 12, Desa Sindanglaya, Kecamatan Sukamantri, Kabupaten Ciamis</p>
+<div class="map-embed-wrap">
+  <iframe
+    title="Peta lokasi acara pernikahan Ulfah dan Hidayat"
+    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1008.1553995003426!2d108.31692778756556!3d-7.099064219794139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMDUnNTcuNCJTIDEwOMKwMTknMDMuMiJF!5e1!3m2!1sid!2sid!4v1792118600520!5m2!1sid!2sid"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 </article>
 </div>
 <div class="gift-strip">
